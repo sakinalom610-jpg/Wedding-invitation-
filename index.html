@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Wedding Invitation - IJAZ &amp; SALMA</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&amp;family=Playfair+Display:ital,wght@0,600;1,400&amp;family=Poppins:wght@300;500&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-red: #8B0000;
+    --dark-maroon: #2a0004;
+    --accent-gold: #D4AF37;
+    --light-gold: #F3E5AB;
+    --cream: #FFFDD0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--dark-maroon);
+    color: var(--cream);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Islamic Gold Coin Unlock Screen */
+  #unlock-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, var(--primary-red) 0%, var(--dark-maroon) 100%);
+    z-index: 9999; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    transition: opacity 1s ease;
+  }
+  .coin-container { cursor: pointer; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .gold-coin {
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, #fff3b3 0%, #ffd700 70%, #b38f00 100%);
+    border: 6px double #8a6d00; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 15px rgba(255,255,255,0.6);
+  }
+  .calligraphy {
+    font-family: 'Cinzel', serif; font-size: 26px; font-weight: bold;
+    color: #4d3a00; line-height: 1.15; text-align: center;
+  }
+  .unlock-text {
+    margin-top: 30px; font-family: 'Cinzel', serif;
+    font-size: 18px; color: var(--accent-gold); letter-spacing: 2px;
+  }
+
+  /* Main Invitation Card */
+  #invitation-content { display: none; opacity: 0; transition: opacity 1s ease; }
+  .card-container {
+    background: linear-gradient(135deg, var(--dark-maroon) 0%, var(--primary-red) 50%, var(--dark-maroon) 100%);
+    border: 10px double var(--accent-gold);
+    padding: 40px 20px; text-align: center; min-height: 100vh;
+  }
+  .names {
+    font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; font-size: 48px;
+    color: var(--light-gold); margin: 20px 0; text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+  }
+  .weds { font-family: 'Cinzel', serif; font-size: 24px; color: var(--accent-gold); margin: 15px 0; letter-spacing: 4px; }
+  .details-text { font-size: 15px; line-height: 1.8; margin: 20px 0; color: #f2e3c6; }
+  
+  /* Event Section */
+  .events-section { margin: 40px 0; text-align: left; padding: 0 10px; }
+  .event-card {
+    background: rgba(0,0,0,0.4); border-left: 4px solid var(--accent-gold);
+    padding: 15px; margin-bottom: 20px; border-radius: 0 10px 10px 0;
+  }
+  .event-title { font-family: 'Cinzel', serif; font-size: 20px; color: var(--light-gold); font-weight: bold; }
+  .event-info { font-size: 14px; color: #fff; margin-top: 8px; line-height: 1.6; }
+  .event-info a { color: var(--accent-gold); text-decoration: underline; display: inline-block; margin-top: 5px; }
+
+  /* Host Section */
+  .hosts-section { margin: 40px 0; font-size: 14px; border-top: 1px dashed var(--accent-gold); border-bottom: 1px dashed var(--accent-gold); padding: 20px 0; line-height: 1.8; }
+
+  /* Venue and Map Button */
+  .location-section { margin: 40px 0; }
+  .map-button {
+    display: inline-block; background: var(--accent-gold); color: var(--dark-maroon);
+    font-family: 'Cinzel', serif; font-weight: bold; padding: 15px 30px;
+    text-decoration: none; border-radius: 30px; box-shadow: 0 5px 15px rgba(212,175,55,0.5);
+  }
+
+  /* Photo Gallery */
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 40px; }
+  .gallery-img { width: 100%; height: 180px; object-fit: cover; border: 2px solid var(--accent-gold); border-radius: 8px; }
+</style>
+</head>
+<body>
+
+  <!-- Background Music Settings -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="Derd e Nijat.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Unlock Screen (Islamic Gold Coin) -->
+  <div id="unlock-screen">
+    <div class="coin-container" onclick="unlockInvitation()">
+      <div class="gold-coin">
+        <div class="calligraphy">الله<br>أكبر</div>
+      </div>
+    </div>
+    <div class="unlock-text">Tap to Open Invitation</div>
+  </div>
+
+  <!-- Main Invitation Content -->
+  <div id="invitation-content">
+    <div class="card-container">
+      <div style="font-size: 26px; color: var(--accent-gold);">✨ BISMILLAH HIR RAHMANIR RAHIM ✨</div>
+      
+      <div class="names">Ijaz</div>
+      <div class="weds">--- WEDS ---</div>
+      <div class="names">Salma</div>
+
+      <div class="details-text">
+        <p>Together with their families</p>
+        <p style="margin-top: 15px;"><strong>Groom's Parents:</strong> Mr. Khan &amp; Mrs. Khan</p>
+        <p><strong>Bride's Parents:</strong> Bride's Parents Name</p>
+      </div>
+
+      <!-- Events Information -->
+      <div class="events-section">
+        <div class="event-card">
+          <div class="event-title">MEHNDI</div>
+          <div class="event-info">
+            10 JANUARY 2027 <br>
+            11:00 AM <br>
+            <a href="https://maps.app.goo.gl/18XfWU9hKNHrcpxj9" target="_blank">📍 My Home</a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-title">HALDI</div>
+          <div class="event-info">
+            11 JANUARY 2027 <br>
+            11:00 AM <br>
+            <a href="https://maps.app.goo.gl/18XfWU9hKNHrcpxj9" target="_blank">📍 My Home</a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-title">NIKAH</div>
+          <div class="event-info">
+            12 JANUARY 2027 <br>
+            11:00 PM <br>
+            <a href="https://maps.app.goo.gl/18XfWU9hKNHrcpxj9" target="_blank">📍 KABAITARI, GOALPARA</a>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <div class="event-title">RECEPTION</div>
+          <div class="event-info">
+            13 JANUARY 2027 <br>
+            05:00 PM <br>
+            <a href="https://maps.app.goo.gl/18XfWU9hKNHrcpxj9" target="_blank">📍 My Home</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hosts Section -->
+      <div class="hosts-section">
+        <p style="color: var(--accent-gold); letter-spacing: 2px; margin-bottom: 10px;">CORDIA-bottom: 10px;">CORDIALLY INVITED BY</p>
+        <p>Ijaz Khan <br> Mr. Khan <br> Mrs. Khan</p>
+      </div>
+
+      <!-- Venue Details and Google Maps Link -->
+      <div class="location-section">
+        <div style="font-size: 16px; margin-bottom: 20px; line-height: 1.6;">
+          <strong>MAIN VENUE:</strong><br>
+          My Home, Bilasipara Ward No 7, Kabootar Khowa
+        </div>
+        <a href="https://maps.app.goo.gl/P3maTLdVFPDWd2gG7?g_st=ac" class="map-button" target="_blank">View Location on Map</a>
+      </div>
+
+      <!-- Photo Gallery -->
+      <div class="gallery">
+        <img src="https://i.postimg.cc/g0QXXK2J/photo1.jpg" class="gallery-img" alt="Couple">
+        <img src="https://i.postimg.cc/tTFT1QcL/photo2.jpg" class="gallery-img" alt="Couple">
+        <img src="https://i.postimg.cc/GhXpTjMT/Screenshot-2026-11-25-12-15-43-19-1c337646f29875672b5a61192b9010f9.jpg" class="gallery-img" alt="Couple">
+        <img src="https://i.postimg.cc/XqVVpZd0/photo4.jpg" class="gallery-img" alt="Couple">
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  function unlockInvitation() {
+    const unlockScreen = document.getElementById('unlock-screen');
+    const content = document.getElementById('invitation-content');
+    const audio = document.getElementById('bgAudio');
+
+    unlockScreen.style.opacity = '0';
+    setTimeout(() => {
+      unlockScreen.style.display = 'none';
+      content.style.display = 'block';
+      setTimeout(() => content.style.opacity = '1', 50);
+      
+      audio.play().catch(e => console.log("Autoplay prevented:", e));
+    }, 800);
+  }
+</script>
+</body>
+</html>
